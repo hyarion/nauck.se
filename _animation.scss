@@ -1,0 +1,50 @@
+@mixin animation-name($name) {
+	-webkit-animation-name: $name; 
+	   -moz-animation-name: $name; 
+	    -ie-animation-name: $name; 
+	     -o-animation-name: $name; 
+	        animation-name: $name;
+}
+@mixin animation-duration($duration) {
+	-webkit-animation-duration: $duration; 
+	   -moz-animation-duration: $duration; 
+	    -ie-animation-duration: $duration; 
+	     -o-animation-duration: $duration; 
+	        animation-duration: $duration;
+}
+@mixin animation-timing-function($timing-function) {
+	-webkit-animation-timing-function: $timing-function; 
+	   -moz-animation-timing-function: $timing-function; 
+	    -ie-animation-timing-function: $timing-function; 
+	     -o-animation-timing-function: $timing-function; 
+	        animation-timing-function: $timing-function;
+}
+@mixin animation-delay($delay) {
+	-webkit-animation-delay: $delay; 
+	   -moz-animation-delay: $delay; 
+	    -ie-animation-delay: $delay; 
+	     -o-animation-delay: $delay; 
+	        animation-delay: $delay;
+}
+@mixin animation-iteration-count($iteration-count) {
+	-webkit-animation-iteration-count: $iteration-count; 
+	   -moz-animation-iteration-count: $iteration-count; 
+	    -ie-animation-iteration-count: $iteration-count; 
+	     -o-animation-iteration-count: $iteration-count; 
+	        animation-iteration-count: $iteration-count;
+}
+@mixin animation-direction($direction) {
+	-webkit-animation-direction: $direction; 
+	   -moz-animation-direction: $direction; 
+	    -ie-animation-direction: $direction; 
+	     -o-animation-direction: $direction; 
+	        animation-direction: $direction;
+}
+@mixin animation($name, $duration, $timing-function, $delay, $iteration-count, $direction) {
+	@include animation-name($name);
+	@include animation-duration($duration);
+	@include animation-timing-function($timing-function);
+	@include animation-iteration-count($iteration-count);
+	@include animation-direction($direction);
+}
+

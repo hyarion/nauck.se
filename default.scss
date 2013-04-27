@@ -1,0 +1,134 @@
+@import "animation";
+@import "transform";
+
+@mixin delay_nth_element($selector, $nth) {
+	#{$selector}:nth-child(#{$nth+1}) {
+		@include animation-delay(#{$nth/8}s);
+	}
+}
+
+body {
+	background-color: #646464;
+	background: url('backgrounds/grey_wash_wall/grey_wash_wall.png') center;
+	margin: 0;
+	padding: 0;
+}
+#vertical_center_outer {
+	display: table;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+#vertical_center_outer>div {
+	display: table-cell;
+	vertical-align: middle;
+}
+#centered {
+	min-width: 25em;
+	text-align: center;
+	font-size: 1.5em;
+	text-shadow:
+		 0       0.05ex 0.03em rgba(255,255,255,0.5),	
+		 0      -0.2ex  0.03em rgba(  0,  0,  0,0.5),
+		-0.05ex  0      0.05em rgba(127,127,127,0.5),
+		 0.05ex  0      0.05em rgba(127,127,127,0.5);
+	margin: 0 auto;
+	overflow: hidden;
+}
+#centered>* {
+	margin: 0 1ex;
+	@include animation-duration(1s);
+}
+#centered h1 {
+	font-size: 4em;
+	@include animation-name(slidein-right);
+}
+h1>span {
+	font-size: 33%;
+	display: inline-block;
+	width: 3em;
+	text-align: left;
+}
+h1>span:first-child {
+	text-align: right;
+}
+h1>a {
+	text-decoration: none;
+}
+#centered>*, #centered>*>* {
+	color: white;
+	font-family: 'Nunito', sans-serif;
+}
+#centered h1>a:hover>span {
+	@include animation(pulse, 1s, ease-in-out, 0s, infinite, alternate);
+}
+@include delay_nth_element("#centered h1>a:hover>span", 0);
+@include delay_nth_element("#centered h1>a:hover>span", 1);
+@include delay_nth_element("#centered h1>a:hover>span", 2);
+@include delay_nth_element("#centered h1>a:hover>span", 3);
+@include delay_nth_element("#centered h1>a:hover>span", 4);
+
+p, blockquote, cite {
+	@include animation-name(slidein-left);
+}
+
+blockquote {
+	padding: 0 3ex 0 3ex;
+}
+blockquote:before, blockquote:after {
+	display: inline-block;
+	font-size: 3em;
+	width: 0;
+}
+blockquote:before {
+	content: "\201C";
+	float: left;
+	position: relative;
+	top: -0.4em;
+	left: -1ex;
+}
+blockquote:after {
+	content: "\201D";
+	float: right;
+}
+cite:before {
+	content: "- ";
+}
+cite {
+	display: block;
+}
+
+* {
+//	border: 1px solid black;
+}
+
+@mixin keyframes($name) {
+	@-webkit-keyframes $name {
+		@content;
+	}
+	@keyframes $name {
+		@content;
+	}
+}
+/*@-webkit-keyframes pulse {*/
+@include keyframes(pulse) {
+	from { color: white; }
+	to   { color: #aaf;  }
+}
+
+@include keyframes(slidein-right) {
+	from {
+		@include transform(translate3d(100%,0,0));
+	}
+	to {
+		@include transform(translate3d(0,0,0));
+	}
+}
+@include keyframes(slidein-left) {
+	from {
+		@include transform(translate3d(-100%,0,0));
+	}
+	to {
+		@include transform(translate3d(0,0,0));
+	}
+}
